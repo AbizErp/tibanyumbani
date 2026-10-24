@@ -98,9 +98,9 @@ function Reports() {
     <section className="tab-panel">
       <div className="card report">
         <div className="report-head">
-          <div className="avatar" aria-hidden="true">GA</div>
+          <div className="avatar" aria-hidden="true">MA</div>
           <div className="grow">
-            <strong>Grace Achieng · 58</strong>
+            <strong>Martin Luther Abisai · 58</strong>
             <div className="small muted">{l('Left TKR · week 8 · next visit Tue 27 Oct', 'Upasuaji wa goti · wiki ya 8')}</div>
           </div>
           <span className="pill ok">{l('On track', 'Inaendelea vizuri')}</span>

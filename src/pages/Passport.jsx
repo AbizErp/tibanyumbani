@@ -24,7 +24,7 @@ export default function Passport() {
 
       <div className="passport-strip card">
         <div className="pp-id">
-          <div className="avatar lg" aria-hidden="true">GA</div>
+          <div className="avatar lg" aria-hidden="true">MA</div>
           <div>
             <strong>{PATIENT.name}</strong>
             <div className="small muted">{PATIENT.age} {l('yrs', 'miaka')} · {PATIENT.town}</div>
@@ -214,7 +214,7 @@ function Access({ onNew, toast }) {
 
 function ShareModal({ preselect, onClose, onDone }) {
   const { state, update, logEvent, l } = useStore()
-  const [who, setWho] = useState('Brian Otieno')
+  const [who, setWho] = useState('Rodney Abisai')
   const [role, setRole] = useState('Home physiotherapist')
   const [recs, setRecs] = useState(preselect ? [preselect] : [])
   const d = new Date(); d.setDate(d.getDate() + 30)
@@ -241,7 +241,7 @@ function ShareModal({ preselect, onClose, onDone }) {
         <div className="two">
           <label className="field"><span>{l('Person or facility', 'Mtu au kituo')}</span>
             <input id="share-who" value={who} onChange={(e) => setWho(e.target.value)} list="team" />
-            <datalist id="team"><option>Brian Otieno</option><option>Dr. S. Njoroge</option><option>Hope Rehabilitation Centre</option><option>Lakeview Physio Clinic</option></datalist>
+            <datalist id="team"><option>Rodney Abisai</option><option>Dr. S. Njoroge</option><option>Hope Rehabilitation Centre</option><option>Lakeview Physio Clinic</option></datalist>
           </label>
           <label className="field"><span>{l('Role', 'Jukumu')}</span>
             <input id="share-role" value={role} onChange={(e) => setRole(e.target.value)} />
@@ -361,7 +361,7 @@ function Progress() {
             <li><span className="delta up">−{PROGRESS.pain[0] - PROGRESS.pain.at(-1)}</span>{l('points of pain', 'alama za maumivu')}</li>
             <li><span className="delta up">+{PROGRESS.lefs.at(-1) - PROGRESS.lefs[0]}</span>{l('LEFS points', 'alama za LEFS')}</li>
           </ul>
-          <p className="small muted">{l('Measured by Brian Otieno at each visit. Pain is your own weekly rating.', 'Vimepimwa na Brian Otieno kila ziara.')}</p>
+          <p className="small muted">{l('Measured by Rodney Abisai at each visit. Pain is your own weekly rating.', 'Vimepimwa na Rodney Abisai kila ziara.')}</p>
         </div>
       </div>
     </section>

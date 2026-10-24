@@ -12,15 +12,15 @@ import ForPhysios from './pages/ForPhysios.jsx'
 import Security from './pages/Security.jsx'
 
 export const ROUTES = [
-  { id: 'home', key: 'nav.home', icon: 'home', el: Home, bottom: true },
-  { id: 'find', key: 'nav.find', icon: 'search', el: FindPhysio, bottom: true },
-  { id: 'passport', key: 'nav.passport', icon: 'folder', el: Passport, bottom: true },
-  { id: 'coach', key: 'nav.coach', icon: 'activity', el: Coach, bottom: true },
-  { id: 'family', key: 'nav.family', icon: 'users', el: Family },
-  { id: 'payments', key: 'nav.payments', icon: 'wallet', el: Payments },
-  { id: 'partners', key: 'nav.partners', icon: 'store', el: Partners },
-  { id: 'physios', key: 'nav.physios', icon: 'badge', el: ForPhysios, group: 'pro' },
-  { id: 'security', key: 'nav.security', icon: 'shield', el: Security, group: 'pro' },
+  { id: 'home', key: 'nav.home', el: Home, menu: true },
+  { id: 'find', key: 'nav.find', el: FindPhysio, menu: true },
+  { id: 'passport', key: 'nav.passport', el: Passport, menu: true },
+  { id: 'coach', key: 'nav.coach', el: Coach, menu: true },
+  { id: 'family', key: 'nav.family', el: Family, menu: true },
+  { id: 'payments', key: 'nav.payments', el: Payments, menu: true },
+  { id: 'partners', key: 'nav.partners', el: Partners },
+  { id: 'physios', key: 'nav.physios', el: ForPhysios },
+  { id: 'security', key: 'nav.security', el: Security },
 ]
 
 const routeFromHash = () => {
@@ -29,7 +29,7 @@ const routeFromHash = () => {
 }
 
 export default function App() {
-  const { state, update, t, reset } = useStore()
+  const { state, update, t, l, reset } = useStore()
   const [route, setRoute] = useState(routeFromHash)
   const [menu, setMenu] = useState(false)
   const [bell, setBell] = useState(false)
@@ -59,50 +59,58 @@ export default function App() {
     setMenu(false)
     setBell(false)
     try { history.replaceState(null, '', '#' + id) } catch { /* sandboxed */ }
-    window.scrollTo({ top: 0, behavior: state.lite ? 'auto' : 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }
 
   const Page = ROUTES.find((r) => r.id === route).el
   const unread = state.notifications.filter((n) => !n.read).length
 
-  const NavList = () => (
-    <nav className="side-nav" aria-label="Main">
-      {ROUTES.filter((r) => !r.group).map((r) => (
-        <button key={r.id} className={'nav-item' + (route === r.id ? ' active' : '')} onClick={() => go(r.id)} aria-current={route === r.id ? 'page' : undefined}>
-          <Icon name={r.icon} /> <span>{t(r.key)}</span>
-        </button>
-      ))}
-      <div className="nav-label">{t('nav.pro')}</div>
-      {ROUTES.filter((r) => r.group).map((r) => (
-        <button key={r.id} className={'nav-item' + (route === r.id ? ' active' : '')} onClick={() => go(r.id)} aria-current={route === r.id ? 'page' : undefined}>
-          <Icon name={r.icon} /> <span>{t(r.key)}</span>
-        </button>
-      ))}
-    </nav>
-  )
-
   return (
     <div className="shell">
-      <header className="topbar">
-        <div className="topbar-inner">
-          <button className="icon-btn only-mobile" onClick={() => setMenu(!menu)} aria-label={t('menu')} aria-expanded={menu}>
-            <Icon name={menu ? 'x' : 'menu'} />
-          </button>
-          <button className="brand" onClick={() => go('home')}>
-            <span className="brand-mark" aria-hidden="true"><Icon name="knee" /></span>
-            <span className="brand-name">Tiba<b>Nyumbani</b></span>
-          </button>
-          <div className="topbar-tools">
-            <span className={'net ' + (online ? 'on' : 'off')} title={online ? t('online') : t('offline')}>
-              <i aria-hidden="true" />{online ? t('online') : t('offline')}
-            </span>
-            <button className={'chip-toggle' + (state.lite ? ' on' : '')} onClick={() => update((s) => ({ lite: !s.lite }))} aria-pressed={state.lite} title={t('lite.hint')}>
-              <Icon name="signal" /> <span className="hide-xs">{t('lite')}</span>
+      {/* thin top bar */}
+      <div className="utility">
+        <div className="wrap utility-inner">
+          <span className="util-contact hide-sm"><Icon name="phone" size={14} /> 0700 000 000</span>
+          <span className="util-contact hide-sm"><Icon name="sms" size={14} /> info@tibanyumbani.example</span>
+          <span className={'net ' + (online ? 'on' : 'off')}><i aria-hidden="true" />{online ? t('online') : t('offline')}</span>
+          <div className="util-right">
+            <button className={'util-btn' + (state.lite ? ' on' : '')} onClick={() => update((s) => ({ lite: !s.lite }))} aria-pressed={state.lite} title={t('lite.hint')}>
+              {t('lite')}
             </button>
-            <div className="lang" role="group" aria-label="Language">
-              <button className={state.lang === 'en' ? 'on' : ''} onClick={() => update(() => ({ lang: 'en' }))}>EN</button>
-              <button className={state.lang === 'sw' ? 'on' : ''} onClick={() => update(() => ({ lang: 'sw' }))}>SW</button>
+            <span className="util-sep" aria-hidden="true">|</span>
+            <button className={'util-btn' + (state.lang === 'en' ? ' on' : '')} onClick={() => update(() => ({ lang: 'en' }))}>English</button>
+            <button className={'util-btn' + (state.lang === 'sw' ? ' on' : '')} onClick={() => update(() => ({ lang: 'sw' }))}>Kiswahili</button>
+            <span className="util-sep hide-sm" aria-hidden="true">|</span>
+            <button className="util-btn hide-sm" onClick={() => go('physios')}>{t('nav.physios')}</button>
+          </div>
+        </div>
+      </div>
+
+      {/* main header */}
+      <header className="header">
+        <div className="wrap header-inner">
+          <button className="brand" onClick={() => go('home')}>
+            <span className="brand-mark" aria-hidden="true"><Icon name="knee" size={26} /></span>
+            <span className="brand-text">
+              <span className="brand-name">TibaNyumbani</span>
+              <span className="brand-tag">{l('Physiotherapy at home', 'Tiba ya viungo nyumbani')}</span>
+            </span>
+          </button>
+
+          <nav className={'menu' + (menu ? ' open' : '')} aria-label="Main">
+            {ROUTES.filter((r) => r.menu).map((r) => (
+              <button key={r.id} className={'menu-item' + (route === r.id ? ' active' : '')} onClick={() => go(r.id)} aria-current={route === r.id ? 'page' : undefined}>
+                {t(r.key)}
+              </button>
+            ))}
+            <div className="menu-extra">
+              {ROUTES.filter((r) => !r.menu).map((r) => (
+                <button key={r.id} className={'menu-item' + (route === r.id ? ' active' : '')} onClick={() => go(r.id)}>{t(r.key)}</button>
+              ))}
             </div>
+          </nav>
+
+          <div className="header-tools">
             <div className="bell-wrap">
               <button className="icon-btn" onClick={() => setBell(!bell)} aria-label={t('alerts')} aria-expanded={bell}>
                 <Icon name="bell" />
@@ -126,39 +134,56 @@ export default function App() {
                 </div>
               )}
             </div>
+            <button className="icon-btn menu-toggle" onClick={() => setMenu(!menu)} aria-label={t('menu')} aria-expanded={menu}>
+              <Icon name={menu ? 'x' : 'menu'} />
+            </button>
           </div>
         </div>
       </header>
 
-      <div className="layout">
-        <aside className={'sidebar' + (menu ? ' open' : '')}>
-          <NavList />
-          <div className="side-foot">
-            <p>{t('demoNote')}</p>
-            <button className="link" onClick={reset}>{t('resetDemo')}</button>
+      <main className="main" id="main">
+        {route !== 'home' && (
+          <div className="crumbs wrap">
+            <button className="link-plain" onClick={() => go('home')}>{t('nav.home')}</button>
+            <span aria-hidden="true">›</span>
+            <span>{t(ROUTES.find((r) => r.id === route).key)}</span>
           </div>
-        </aside>
-        {menu && <div className="scrim" onClick={() => setMenu(false)} />}
-        <main className="main" id="main">
+        )}
+        <div className={route === 'home' ? '' : 'wrap'}>
           <Page go={go} />
-          <footer className="site-foot">
-            <p>{t('footer')}</p>
-          </footer>
-        </main>
-      </div>
+        </div>
+      </main>
 
-      <nav className="bottom-nav" aria-label="Quick">
-        {ROUTES.filter((r) => r.bottom).map((r) => (
-          <button key={r.id} className={route === r.id ? 'active' : ''} onClick={() => go(r.id)}>
-            <Icon name={r.icon} />
-            <span>{t(r.key + '.short')}</span>
-          </button>
-        ))}
-        <button className={menu ? 'active' : ''} onClick={() => setMenu(!menu)}>
-          <Icon name="menu" />
-          <span>{t('more')}</span>
-        </button>
-      </nav>
+      <footer className="footer">
+        <div className="wrap footer-cols">
+          <div>
+            <div className="foot-brand"><Icon name="knee" size={22} /> TibaNyumbani</div>
+            <p>{l('Home physiotherapy across Kenya. Verified physiotherapists, your records in your control, and support between visits.', 'Tiba ya viungo nyumbani kote Kenya.')}</p>
+          </div>
+          <div>
+            <h4>{l('Patients', 'Wagonjwa')}</h4>
+            {['find', 'passport', 'coach', 'family', 'payments'].map((id) => (
+              <button key={id} className="foot-link" onClick={() => go(id)}>{t(ROUTES.find((r) => r.id === id).key)}</button>
+            ))}
+          </div>
+          <div>
+            <h4>{l('Partners & professionals', 'Washirika na wataalamu')}</h4>
+            {['partners', 'physios', 'security'].map((id) => (
+              <button key={id} className="foot-link" onClick={() => go(id)}>{t(ROUTES.find((r) => r.id === id).key)}</button>
+            ))}
+          </div>
+          <div>
+            <h4>{l('Contact', 'Mawasiliano')}</h4>
+            <p>Nakuru, Kenya</p>
+            <p>0700 000 000</p>
+            <p>info@tibanyumbani.example</p>
+          </div>
+        </div>
+        <div className="wrap footer-base">
+          <span>© 2026 TibaNyumbani · {t('demoNote')}</span>
+          <button className="link-plain" onClick={reset}>{t('resetDemo')}</button>
+        </div>
+      </footer>
     </div>
   )
 }
