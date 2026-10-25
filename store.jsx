@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 import { INITIAL_RECORDS, INITIAL_GRANTS, INITIAL_LOG, INITIAL_CAREGIVERS, INITIAL_RECEIPTS } from './data.js'
 import { translate } from './i18n.js'
 
-const KEY = 'tibanyumbani-demo-v1'
+const KEY = 'tibanyumbani-demo-v2'
 
 const initial = () => ({
   lang: 'en',
