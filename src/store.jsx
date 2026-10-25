@@ -2,11 +2,12 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 import { INITIAL_RECORDS, INITIAL_GRANTS, INITIAL_LOG, INITIAL_CAREGIVERS, INITIAL_RECEIPTS } from './data.js'
 import { translate } from './i18n.js'
 
-const KEY = 'tibanyumbani-demo-v1'
+const KEY = 'tibanyumbani-demo-v2'
 
 const initial = () => ({
   lang: 'en',
   lite: false,
+  a11y: { size: 1, contrast: false, readable: false, spacing: false, links: false, rate: 1, clickRead: false },
   records: INITIAL_RECORDS,
   grants: INITIAL_GRANTS,
   log: INITIAL_LOG,
@@ -28,7 +29,7 @@ const initial = () => ({
 function load() {
   try {
     const raw = localStorage.getItem(KEY)
-    if (raw) return { ...initial(), ...JSON.parse(raw) }
+    if (raw) { const saved = JSON.parse(raw); return { ...initial(), ...saved, a11y: { ...initial().a11y, ...(saved.a11y || {}) } } }
   } catch { /* storage unavailable */ }
   return initial()
 }

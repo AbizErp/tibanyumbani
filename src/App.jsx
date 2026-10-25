@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useStore } from './store.jsx'
 import Icon from './Icon.jsx'
+import A11y from './A11y.jsx'
 import Home from './pages/Home.jsx'
 import FindPhysio from './pages/FindPhysio.jsx'
 import Passport from './pages/Passport.jsx'
@@ -67,6 +68,7 @@ export default function App() {
 
   return (
     <div className="shell">
+      <a className="skip" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById('main')?.focus() }}>Skip to content</a>
       {/* thin top bar */}
       <div className="utility">
         <div className="wrap utility-inner">
@@ -141,7 +143,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="main" id="main">
+      <main className="main" id="main" tabIndex={-1}>
         {route !== 'home' && (
           <div className="crumbs wrap">
             <button className="link-plain" onClick={() => go('home')}>{t('nav.home')}</button>
@@ -184,6 +186,7 @@ export default function App() {
           <button className="link-plain" onClick={reset}>{t('resetDemo')}</button>
         </div>
       </footer>
+      <A11y go={go} />
     </div>
   )
 }

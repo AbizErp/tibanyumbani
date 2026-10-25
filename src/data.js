@@ -1,7 +1,7 @@
 // Sample data for the prototype. Every person, clinic and record here is invented.
 
 export const PATIENT = {
-  name: 'Martin Luther Abisai',
+  name: 'Amani Mwema',
   age: 58,
   town: 'Nakuru',
   lat: -0.3031,
@@ -41,7 +41,7 @@ export const TOWNS = [
 
 export const THERAPISTS = [
   {
-    id: 't1', name: 'Rodney Abisai', initials: 'RA', reg: 'PCK/2014/0412', qual: 'BSc Physiotherapy (Moi)',
+    id: 't1', name: 'Baraka Tumaini', initials: 'BT', reg: 'PCK/2014/0412', qual: 'BSc Physiotherapy (Moi)',
     years: 11, specialties: ['knee', 'postop', 'sports'], modes: ['home', 'clinic', 'video'],
     town: 'Nakuru', lat: -0.29, lng: 36.07, fees: { home: 3500, clinic: 2500, video: 1500 },
     rating: 4.9, reviews: 132, languages: ['English', 'Kiswahili', 'Dholuo'], available: true,
@@ -112,17 +112,17 @@ export const INITIAL_RECORDS = [
   { id: 'r3', type: 'discharge', title: 'Discharge summary: left TKR', date: '2026-09-01', source: 'Rift Valley General Hospital', size: '240 KB' },
   { id: 'r4', type: 'referral', title: 'Referral to home physiotherapy', date: '2026-09-01', source: 'Dr. S. Njoroge, Orthopaedics', size: '96 KB' },
   { id: 'r5', type: 'xray', title: 'Left knee X-ray (6 weeks post-op)', date: '2026-10-10', source: 'Rift Valley General Hospital', size: '3.1 MB' },
-  { id: 'r6', type: 'notes', title: 'Assessment notes: session 5', date: '2026-10-20', source: 'Rodney Abisai, Physiotherapist', size: '58 KB' },
+  { id: 'r6', type: 'notes', title: 'Assessment notes: session 5', date: '2026-10-20', source: 'Baraka Tumaini, Physiotherapist', size: '58 KB' },
 ]
 
 export const INITIAL_GRANTS = [
-  { id: 'g1', who: 'Rodney Abisai', role: 'Home physiotherapist', records: ['r1', 'r3', 'r4', 'r5', 'r6'], expires: '2026-12-31', download: false, status: 'active' },
+  { id: 'g1', who: 'Baraka Tumaini', role: 'Home physiotherapist', records: ['r1', 'r3', 'r4', 'r5', 'r6'], expires: '2026-12-31', download: false, status: 'active' },
   { id: 'g2', who: 'Dr. S. Njoroge', role: 'Orthopaedic surgeon', records: ['r1', 'r2', 'r3', 'r5', 'r6'], expires: '2027-03-01', download: true, status: 'active' },
   { id: 'g3', who: 'Hope Rehabilitation Centre', role: 'Rehab centre', records: ['r3', 'r4'], expires: '2026-09-30', download: false, status: 'expired' },
 ]
 
 export const INITIAL_LOG = [
-  { id: 'l1', at: '2026-10-24T08:12:00', who: 'Rodney Abisai', action: 'viewed', item: 'Assessment notes: session 5', route: 'Web app' },
+  { id: 'l1', at: '2026-10-24T08:12:00', who: 'Baraka Tumaini', action: 'viewed', item: 'Assessment notes: session 5', route: 'Web app' },
   { id: 'l2', at: '2026-10-23T19:40:00', who: 'You', action: 'uploaded', item: 'Assessment notes: session 5', route: 'Mobile web' },
   { id: 'l3', at: '2026-10-22T10:05:00', who: 'Dr. S. Njoroge', action: 'downloaded', item: 'Left knee X-ray (6 weeks post-op)', route: 'Web app' },
   { id: 'l4', at: '2026-10-21T14:31:00', who: 'Unknown device', action: 'blocked', item: '4 failed sign-in attempts', route: 'Web app' },
@@ -131,11 +131,11 @@ export const INITIAL_LOG = [
 ]
 
 export const SESSIONS = [
-  { date: '2026-09-03', type: 'Initial home assessment', who: 'Rodney Abisai', note: 'Flexion 70°, pain 8/10 on stairs. Walking frame indoors.' },
-  { date: '2026-09-10', type: 'Home session 2', who: 'Rodney Abisai', note: 'Started heel slides and quad sets. Ice after exercise.' },
-  { date: '2026-09-24', type: 'Home session 3', who: 'Rodney Abisai', note: 'Moved from frame to two crutches. Flexion 90°.' },
-  { date: '2026-10-08', type: 'Home session 4', who: 'Rodney Abisai', note: 'Added yellow band knee extension. One crutch outdoors.' },
-  { date: '2026-10-20', type: 'Home session 5', who: 'Rodney Abisai', note: 'Flexion 118°. Sit-to-stand without hands. Plan: stairs.' },
+  { date: '2026-09-03', type: 'Initial home assessment', who: 'Baraka Tumaini', note: 'Flexion 70°, pain 8/10 on stairs. Walking frame indoors.' },
+  { date: '2026-09-10', type: 'Home session 2', who: 'Baraka Tumaini', note: 'Started heel slides and quad sets. Ice after exercise.' },
+  { date: '2026-09-24', type: 'Home session 3', who: 'Baraka Tumaini', note: 'Moved from frame to two crutches. Flexion 90°.' },
+  { date: '2026-10-08', type: 'Home session 4', who: 'Baraka Tumaini', note: 'Added yellow band knee extension. One crutch outdoors.' },
+  { date: '2026-10-20', type: 'Home session 5', who: 'Baraka Tumaini', note: 'Flexion 118°. Sit-to-stand without hands. Plan: stairs.' },
 ]
 
 // Weekly measurements since surgery

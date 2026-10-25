@@ -32,7 +32,7 @@ export default function Coach() {
       <PageHead
         eyebrow={l('Personalised home exercise coach', 'Kocha wa mazoezi ya nyumbani')}
         title={l("Today's exercises", 'Mazoezi ya leo')}
-        lead={l('Approved by Rodney Abisai on 20 Oct 2026. Do them three times a day unless your physiotherapist says otherwise. Stop and report if pain goes above 6 out of 10.', 'Yameidhinishwa na Rodney Abisai tarehe 20 Okt 2026. Fanya mara tatu kwa siku. Acha na uripoti maumivu yakizidi 6 kati ya 10.')}
+        lead={l('Approved by Baraka Tumaini on 20 Oct 2026. Do them three times a day unless your physiotherapist says otherwise. Stop and report if pain goes above 6 out of 10.', 'Yameidhinishwa na Baraka Tumaini tarehe 20 Okt 2026. Fanya mara tatu kwa siku. Acha na uripoti maumivu yakizidi 6 kati ya 10.')}
       />
 
       <div className="coach-top">
@@ -91,7 +91,7 @@ export default function Coach() {
         <div className="card">
           <h2 className="card-title">{l('Sent to your physiotherapist', 'Zilizotumwa kwa mtaalamu wako')}</h2>
           {state.feedback.length === 0
-            ? <p className="muted small">{l('After each exercise, tell us how it felt. Rodney sees a weekly report before your next visit.', 'Baada ya kila zoezi, tuambie lilivyokuwa. Brian ataona ripoti ya wiki.')}</p>
+            ? <p className="muted small">{l('After each exercise, tell us how it felt. Baraka sees a weekly report before your next visit.', 'Baada ya kila zoezi, tuambie lilivyokuwa. Brian ataona ripoti ya wiki.')}</p>
             : (
               <ul className="fb-list">
                 {state.feedback.slice(0, 5).map((f) => (
@@ -140,7 +140,7 @@ export default function Coach() {
           <p className="small muted">{l('Prototype: your physiotherapist uploads a short clip here. Kiswahili captions are reviewed by a clinician before release.', 'Mfano: mtaalamu wako atapakia video fupi hapa. Maelezo ya Kiswahili hukaguliwa na mtaalamu.')}</p>
         </Modal>
       )}
-      {feedbackFor && <FeedbackModal ex={feedbackFor} onClose={() => setFeedbackFor(null)} onSent={() => { setFeedbackFor(null); showToast(l('Sent to Rodney Abisai', 'Imetumwa kwa Rodney Abisai')) }} />}
+      {feedbackFor && <FeedbackModal ex={feedbackFor} onClose={() => setFeedbackFor(null)} onSent={() => { setFeedbackFor(null); showToast(l('Sent to Baraka Tumaini', 'Imetumwa kwa Baraka Tumaini')) }} />}
       {toast}
     </div>
   )
@@ -208,7 +208,7 @@ function FeedbackModal({ ex, onClose, onSent }) {
           <input id="fb-pain" type="range" min="0" max="10" value={pain} onChange={(e) => setPain(+e.target.value)} className={'pain-range p' + pain} />
           <div className="scale-labels small muted"><span>{l('None', 'Hakuna')}</span><span>{l('Worst', 'Makali zaidi')}</span></div>
         </label>
-        {pain > 6 && <p className="note warn-note"><Icon name="alert" size={16} /> {l('Stop this exercise for today. We will alert Rodney now.', 'Acha zoezi hili leo. Tutamjulisha Brian sasa.')}</p>}
+        {pain > 6 && <p className="note warn-note"><Icon name="alert" size={16} /> {l('Stop this exercise for today. We will alert Baraka now.', 'Acha zoezi hili leo. Tutamjulisha Brian sasa.')}</p>}
         <div className="field">
           <span>{l('Difficulty', 'Ugumu')}</span>
           <div className="seg">

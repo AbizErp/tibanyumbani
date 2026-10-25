@@ -68,7 +68,7 @@ export default function Home({ go }) {
               <Icon name="calendar" />
               <div>
                 <div className="small muted">{l('Next home visit', 'Ziara ijayo nyumbani')}</div>
-                <strong>{l('Tue 27 Oct, 9:00 · Rodney Abisai', 'Jumanne 27 Okt, 3:00 asubuhi · Rodney Abisai')}</strong>
+                <strong>{l('Tue 27 Oct, 9:00 · Baraka Tumaini', 'Jumanne 27 Okt, 3:00 asubuhi · Baraka Tumaini')}</strong>
               </div>
             </div>
             <div className="today-row">
